@@ -1,6 +1,7 @@
 ﻿using System;
 
 #if __IOS__
+using System.IO;
 using Foundation;
 using static Foundation.NSUserDefaults;
 #else
@@ -47,7 +48,8 @@ namespace NomadCode.Settings
 			using (NSString keyString = new NSString (_key), defaultString = new NSString (_defaultValue), preferenceSpecifiers = new NSString (_preferenceSpecifiers))
 			using (var settings = NSDictionary.FromFile (path))
 			using (var preferences = (NSArray)settings.ValueForKey (preferenceSpecifiers))
-			using (var registrationDictionary = new NSMutableDictionary ()) {
+			using (var registrationDictionary = new NSMutableDictionary ())
+			{
 				for (nuint i = 0; i < preferences.Count; i++)
 					using (var prefSpecification = preferences.GetItem<NSDictionary> (i))
 					using (var key = (NSString)prefSpecification.ValueForKey (keyString))
