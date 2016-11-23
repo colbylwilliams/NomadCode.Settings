@@ -13,7 +13,7 @@ namespace NomadCode.Settings
 	public static class Settings
 	{
 		#region consts
-		
+
 #if __IOS__
 
 		const string _settingsDir = "Settings";
@@ -96,16 +96,14 @@ namespace NomadCode.Settings
 
 #else
 
-		const string zero = "0";
-
-
 		public static void RegisterDefaultSettings () { }
 
 
 		public static void SetSetting (string key, string value)
 		{
 			using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (Application.Context))
-			using (var sharedPreferencesEditor = sharedPreferences.Edit ()) {
+			using (var sharedPreferencesEditor = sharedPreferences.Edit ())
+			{
 				sharedPreferencesEditor.PutString (key, value);
 				sharedPreferencesEditor.Commit ();
 			}
@@ -115,7 +113,8 @@ namespace NomadCode.Settings
 		public static void SetSetting (string key, bool value)
 		{
 			using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (Application.Context))
-			using (var sharedPreferencesEditor = sharedPreferences.Edit ()) {
+			using (var sharedPreferencesEditor = sharedPreferences.Edit ())
+			{
 				sharedPreferencesEditor.PutBoolean (key, value);
 				sharedPreferencesEditor.Commit ();
 			}
@@ -125,10 +124,14 @@ namespace NomadCode.Settings
 		public static void SetSetting (string key, int value, bool asString = false)
 		{
 			using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (Application.Context))
-			using (var sharedPreferencesEditor = sharedPreferences.Edit ()) {
-				if (asString) {
+			using (var sharedPreferencesEditor = sharedPreferences.Edit ())
+			{
+				if (asString)
+				{
 					sharedPreferencesEditor.PutString (key, value.ToString ());
-				} else {
+				}
+				else
+				{
 					sharedPreferencesEditor.PutInt (key, value);
 				}
 				sharedPreferencesEditor.Commit ();
@@ -139,7 +142,8 @@ namespace NomadCode.Settings
 		public static void SetSetting (string key, DateTime value)
 		{
 			using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (Application.Context))
-			using (var sharedPreferencesEditor = sharedPreferences.Edit ()) {
+			using (var sharedPreferencesEditor = sharedPreferences.Edit ())
+			{
 				sharedPreferencesEditor.PutString (key, value.ToString ());
 				sharedPreferencesEditor.Commit ();
 			}
@@ -149,10 +153,14 @@ namespace NomadCode.Settings
 
 		public static int Int32ForKey (string key, bool fromString = false)
 		{
-			using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (Application.Context)) {
-				if (fromString) {
+			using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (Application.Context))
+			{
+				if (fromString)
+				{
 					return int.Parse (sharedPreferences.GetString (key, zero));
-				} else {
+				}
+				else
+				{
 					return Convert.ToInt32 (sharedPreferences.GetInt (key, 0));
 				}
 			}
